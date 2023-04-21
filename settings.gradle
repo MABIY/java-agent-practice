@@ -1,4 +1,5 @@
 rootProject.name = 'java-agent'
 include 'premain'
 include 'agent_test'
+include 'annotation'
 

@@ -3,26 +3,29 @@ plugins {
     id 'application'
 }
 
-group 'org.example'
+group 'lh.test'
 version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
-println  "  project dir:  "+ project(':agent_test').projectDir
+
 jar {
     manifest {
-        attributes 'Main-Class': 'org.example.Main'
+        attributes 'Main-Class': 'lh.test.Main'
     }
 }
+
 dependencies {
+    implementation project(':annotation')
+    implementation group: 'org.javassist', name: 'javassist', version: "${javassistVersion}"
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 application {
-    mainClassName = 'org.example.Main'
+    mainClassName = 'lh.test.Main'
     applicationDefaultJvmArgs = [
-            '-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=6789',
             "-javaagent:${project(':premain').projectDir}/build/libs/premain-1.0-SNAPSHOT.jar",
     ]
 }

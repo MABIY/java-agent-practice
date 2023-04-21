@@ -8,7 +8,7 @@ plugins {
     id 'java'
 }
 
-group 'org.example'
+group 'lh.test'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -18,12 +18,13 @@ repositories {
 
 jar {
     manifest {
-        attributes 'Premain-Class': 'org.example.Agent'
+        attributes 'Premain-Class': 'lh.premain.Agent'
     }
 }
 
 dependencies {
-    implementation group: 'org.javassist', name: 'javassist', version: '3.29.2-GA'
+    implementation project(':annotation')
+    implementation group: 'org.javassist', name: 'javassist', version: "${javassistVersion}"
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
